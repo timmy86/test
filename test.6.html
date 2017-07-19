@@ -1,0 +1,34 @@
+<!DOCTYPE HTML1>
+<html>
+<head>
+<meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>今明36小時天氣預報</h1>
+    </header>
+    <div class="weather">
+        <select id="city" onChange="getWeather(this);"></selsct>
+        <ul id="view"></ul> 
+    </div>
+</div>  
+
+<script type="text/javascript">
+    function getCity(){
+        $.ajax({
+            url:"http://www1.pu.edu.tw/~s1040340/test999.php",
+            type:"GET",
+            dataType:"json",
+            success:function(json){
+                for(i=0;i<21;i++){
+                    var city =json.dataset.location[i]['locationName'];
+                    $('#city').append("<option value="+i+">"+city+"</option>");
+                }
+            }
+        })
+    }
+getCity();
+</script>
+</body>
